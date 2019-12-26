@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="utf-8">
+        <title>projektmucha</title>
+        <script src="{{ url_for('static', filename='rest.js') }}"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" 
+            integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" 
+            crossorigin="anonymous">
+    </head>
+    <body>
+        <h3> Add person </h3>
+        <form action="#" class="form-group">
+            <div class="form-group">
+            <label><input class="form-control" type="text" name="name" value="name"></label>
+            <label><input class="form-control" type="text" name="surname" value="surname"></label>
+            <label><input class="form-control" type="text" name="country" value="country"></label>
+            <input type="button" value = "submit" onclick="return addPerson(this.form)">
+            </div>
+        </form>
+
+        <h3> All people </h3>
+        <table id="viewAll" class="table table-striped">
+            {% for record in table %}
+            <tr>
+                <td> {{record[0]}} </td>
+                <td> {{record[1]}} </td>
+                <td> {{record[2]}} </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h3> Relations </h3>
+        <table id="viewRelations" class="table table-striped">
+        </table>
+
+        <h3> Link people </h3>
+        <form method="POST" action="/linkPeople" id="link" class="form-group">
+        <div class="form-group">
+            <select name="to" form="link">
+                {% for record in table %}
+                <option value='{{record[-1]}}'>{{record[0]}}, {{record[1]}}, {{record[2]}}</option>
+                {% endfor %}
+            </select>
+            <select name="from" form="link">
+                {% for record in table %}
+                <option value='{{record[-1]}}'>{{record[0]}}, {{record[1]}}, {{record[2]}}</option>
+                {% endfor %}
+            </select>
+            <select  name="link" form="link">
+                <option value="KNOWS">knows</option>
+                <option value="HATES">hates</option>
+            </select>
+            <input class="form-control" type="button" value = "link" onclick="return linkPeople(this.form)">
+        </div>
+        </form>
+
+        <h3> Get relations of people </h3>
+        <form method="POST" action="/getRelations" id="getRelations" class="form-group">
+        <div class="form-group">
+            <select name="person" form="getRelations">
+                {% for record in table %}
+                <option value='{{record[-1]}}'>{{record[0]}}, {{record[1]}}, {{record[2]}}</option>
+                {% endfor %}
+            </select>
+            <select  name="link" form="getRelations">
+                <option value="KNOWS">knows</option>
+                <option value="HATES">hates</option>
+            </select>
+            <input class="form-control" type="button" value = "get relations" onclick="return getRelations(this.form)">
+        </div>
+        </form>
+        
+        <button onclick="update()" class="btn">Refresh</button>
+        <button onclick="window.location.href = '{{ url_for('static', filename='docs/index.html') }}';" class="btn">Docs</button>
+    </body>
+</html>
