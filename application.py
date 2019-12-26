@@ -15,7 +15,7 @@ def link_people(tx, to, ffrom, link):
     tx.run(query)
 
 def exterminate_person(tx, idx):
-    query = "MATCH (a:Person) WHERE ID(a) = "+idx+" DELETE (a)"
+    query = "MATCH (a:Person) WHERE ID(a) = "+idx+" DETACH DELETE (a)"
     tx.run(query)
 
 def print_all_people_table(tx):
