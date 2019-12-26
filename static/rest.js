@@ -70,6 +70,26 @@ function linkPeople(form)
    return true;
 }
 
+function deletePerson(form)
+{
+    var person = {};
+    person.id = form.person.value;
+    txt = JSON.stringify(person);
+    request = getRequestObject() ;
+    request.onreadystatechange = function() {
+        if (request.readyState == 4)    {
+            if(request.status != "200")
+                alert("Something went worng!!!");
+            else
+                alert("Person deleted forever");
+        }
+   }
+   request.open("POST", "/deletePerson", true);
+   request.send(txt);
+
+   return true;
+}
+
 function getRelations(form) {
     var person = {};
     person.id = form.person.value;

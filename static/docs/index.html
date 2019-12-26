@@ -8,10 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">    
-    <link rel="shortcut icon" href="favicon.ico">  
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <!-- FontAwesome JS -->
-    <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script>
     <!-- Global CSS -->
     <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">   
     <!-- Plugins CSS -->    
@@ -55,7 +51,7 @@
                             </div><!--//icon-holder-->
                             <h3 class="title">Wdrożenie</h3>
                             Apliakcja jest osadzona na platformie Azure: <a href="https://portal.azure.com/">https://portal.azure.com/</a><br>
-                            Działanie opeira się na stylu REST.<br>
+                            Działanie opiera się na stylu REST.<br>
                             Stos technologinczy:
                             <li>Linux/UNIX</li>
                             <li>Python 3.7/Flask</li>
@@ -65,7 +61,7 @@
                     <div class="item item-pink">
                         <div class="item-inner">
                             <div class="icon-holder">
-                                <i class="icon fa fa-paper-plane"></i>
+                                <span aria-hidden="true" class="icon icon_genius"></span>
                             </div><!--//icon-holder-->
                             <h3 class="title">Dokumentacja kodu</h3>
                             <div>
@@ -107,6 +103,13 @@
                             obecnych osób i tworzy liste</p>
                             <p><b>Zwraca</b>: lista</p>
                             <p><b>tx</b>: aktywne połącznie z bazą danych</p>
+                            </div>
+                            <div>
+                            <code>
+                            exterminate_person<br>
+                            </code>
+                            <p><b>Krótki opis</b>: funkcja usuwa z bazy danych za pośrednictwem podanego połącznia wskazaną osobę</p>
+                            <p><b>idx</b>: id osoby</p>
                             </div>
                             <div>
                             <code>
@@ -153,6 +156,14 @@
                             </div>
                             <div>
                             <code>
+                            @app.route("/deletePerson", methods=['POST'])<br>
+                            deletePerson<br>
+                            </code>
+                            <p><b>Krótki opis</b>: Realizuje Usawanie rekordów typy osoba (Person)</p>
+                            <p><b>Zwraca</b>: Status 200/418</p>
+                            </div>
+                            <div>
+                            <code>
                             @app.route("/update", methods=['POST'])<br>
                             update<br>
                             </code>
@@ -164,7 +175,7 @@
                     <div class="item item-blue">
                         <div class="item-inner">
                             <div class="icon-holder">
-                                <i class="icon fa fa-paper-plane"></i>
+                                <span aria-hidden="true" class="icon icon_genius"></span>
                             </div><!--//icon-holder-->
                             <h3 class="title">Dokumentacja web API</h3>
                             <div>
@@ -188,6 +199,10 @@
                             <p>Odpowiada za wyświetlanie się rekordów w tabeli 'Relations'</p>
                             </div>
                             <div>
+                            <h4 class="title">Formularz 'Delete person'</h4>
+                            <p>Odpowiada za usuwanie rekordów z bazy danych</p>
+                            </div>
+                            <div>
                             <h4 class="title">Przycisk 'Refresh'</h4>
                             <p>Odpowiada za aktualizacje rekordów w tabeli 'All people'<br>
                             <b>UWAGA</b> Aby odświerzyć listy rozwiajane, należy odświrzyć stronę w przeglądarce</p>
@@ -198,38 +213,7 @@
                             </div>
                         </div><!--//item-inner-->
                     </div><!--//item-->
-                    <div class="item item-purple">
-                        <div class="item-inner">
-                            <div class="icon-holder">
-                                <span aria-hidden="true" class="icon icon_lifesaver"></span>
-                            </div><!--//icon-holder-->
-                            <h3 class="title">FAQs</h3>
-                            <p class="intro">Layout for FAQ page. Lorem ipsum dolor sit amet, consectetuer adipiscing elit</p>
-                            <a class="link" href="faqs.html"><span></span></a>
-                        </div><!--//item-inner-->
-                    </div><!--//item-->
-                    <div class="item item-primary">
-                        <div class="item-inner">
-                            <div class="icon-holder">
-                                <span aria-hidden="true" class="icon icon_genius"></span>
-                            </div><!--//icon-holder-->
-                            <h3 class="title">Showcase</h3>
-                            <p class="intro">Layout for showcase page. Lorem ipsum dolor sit amet, consectetuer adipiscing elit </p>
-                            <a class="link" href="showcase.html"><span></span></a>
-                        </div><!--//item-inner-->
-                    </div><!--//item-->
-                    <div class="item item-orange">
-                        <div class="item-inner">
-                            <div class="icon-holder">
-                                <span aria-hidden="true" class="icon icon_gift"></span>
-                            </div><!--//icon-holder-->
-                            <h3 class="title">License &amp; Credits</h3>
-                            <p class="intro">Layout for license &amp; credits page. Consectetuer adipiscing elit.</p>
-                            <a class="link" href="license.html"><span></span></a>
-                        </div><!--//item-inner-->
-                    </div><!--//item-->
                 </div><!--//cards-->
-                
             </div><!--//container-->
         </section><!--//cards-section-->
     </div><!--//page-wrapper-->
@@ -237,17 +221,11 @@
     <footer class="footer text-center">
         <div class="container">
             <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can buy the commercial license via our website: themes.3rdwavemedia.com */-->
-            <small class="copyright">Designed with <i class="fas fa-heart"></i> by <a href="https://themes.3rdwavemedia.com/" target="_blank">Xiaoying Riley</a> for developers</small>
+            <small class="copyright">Designed with <i class="fas fa-heart"></i> by <a href="https://themes.3rdwavemedia.com/" target="_blank">Xiaoying Riley</a> for developers</small><br>
+            <small class="copyright">Retarded <i class="fas fa-heart"></i> by <a href="https://https://github.com/Shadoba/" target="_blank">Bartek Mucha</a> for himself</small>
             
         </div><!--//container-->
     </footer><!--//footer-->
-    
-     
-    <!-- Main Javascript -->          
-    <script type="text/javascript" src="assets/plugins/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>     
-    <script type="text/javascript" src="assets/plugins/stickyfill/dist/stickyfill.min.js"></script>                                                                
-    <script type="text/javascript" src="assets/js/main.js"></script>
     
 </body>
 </html> 

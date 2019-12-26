@@ -14,6 +14,10 @@ def link_people(tx, to, ffrom, link):
     query = "MATCH (a:Person), (b:Person) WHERE ID(a) = "+to+" AND ID(b) = "+ffrom+" MERGE (a)-[:"+link+"]->(b)"
     tx.run(query)
 
+def exterminate_person(tx, idx):
+    query = "MATCH (a:Person) WHERE ID(a) = "+idx+" DELETE (a)"
+    tx.run(query)
+
 def print_all_people_table(tx):
     rtnstr = ""
     for record in tx.run("MATCH (a:Person)"
@@ -113,6 +117,21 @@ def getRelations():
 
     content = get_linked_people(driver.session(), form["id"], form["link"])
     return content
+
+@app.route("/deletePerson", methods=['POST'])
+def deletePerson():
+    form = json.loads(request.data)
+    passed = True
+    try:
+        print(form["id"])
+    except:
+        passed = False
+
+    if not passed:
+        return Response("Invalid JSON", status=418 , mimetype='html/text')
+
+    exterminate_person(driver.session(), form["id"])
+    return Response("Person deleted", status=200 , mimetype='html/text')
 
 @app.route("/update", methods=['POST'])
 def update():

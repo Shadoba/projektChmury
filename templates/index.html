@@ -70,7 +70,19 @@
             <input class="form-control" type="button" value = "get relations" onclick="return getRelations(this.form)">
         </div>
         </form>
-        
+
+        <h3> Delete person </h3>
+        <form method="POST" action="/deletePerson" id="deletePerson" class="form-group">
+        <div class="form-group">
+            <select name="person" form="deletePerson">
+                {% for record in table %}
+                <option value='{{record[-1]}}'>{{record[0]}}, {{record[1]}}, {{record[2]}}</option>
+                {% endfor %}
+            </select>
+            <input class="form-control" type="button" value = "delete person" onclick="return deletePerson(this.form)">
+        </div>
+        </form>
+
         <button onclick="update()" class="btn">Refresh</button>
         <button onclick="window.location.href = '{{ url_for('static', filename='docs/index.html') }}';" class="btn">Docs</button>
     </body>
